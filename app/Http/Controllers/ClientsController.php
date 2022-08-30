@@ -16,7 +16,8 @@ class ClientsController extends Controller
     public function index()
     {
         //
-        return view ('clients.create');
+        $clt = Clients::count();
+        return view ('clients.create', compact('clt'));
     }
     public function tableaubord()
     {

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Voitures;
 use App\Models\Personnels;
 use Illuminate\Http\Request;
 
-class PersonnelsController extends Controller
+class VoituresController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,10 @@ class PersonnelsController extends Controller
     public function index()
     {
         //
-        $admin = Personnels::count();
-        $personnel = Personnels::all();
-        return view ('personnels.index', compact('personnel', 'admin'));
+        $admin1 = Voitures::count();
+        $vtr = Personnels::all();
+        $voiture = Voitures::all();
+        return view ('voitures.index', compact('voiture', 'vtr', 'admin1'));
     }
 
     /**
@@ -25,10 +27,9 @@ class PersonnelsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         //
-       
     }
 
     /**
@@ -39,27 +40,27 @@ class PersonnelsController extends Controller
      */
     public function store(Request $request)
     {
-        $persona = $request->validate(
+        //
+        $voito = $request->validate(
             [
-                'nom' => ['required', 'string'],
-                'prenom' => ['required', 'string'],
-                'fonction' => ['required', 'string'],
-                'telephone' => ['required', 'integer']
+                'numero' => ['required', 'string', 'max:225'],
+                'libelle' => ['required', 'string', 'max:225'],
+                'couleur' => ['required', 'string', 'max:255'],
+                'id_personnels' => ['required', 'integer', 'max:225']
             ]
         );
-        
-        $personnel = Personnels::create($persona);
-        return redirect('/Personnels');
+        $voiture = Voitures::create($voito); 
+        return redirect ('/Voitures');
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Personnels  $personnels
+     * @param  \App\Models\Voitures  $voitures
      * @return \Illuminate\Http\Response
      */
-    public function show(Personnels $personnels)
+    public function show(Voitures $voitures)
     {
         //
     }
@@ -67,10 +68,10 @@ class PersonnelsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Personnels  $personnels
+     * @param  \App\Models\Voitures  $voitures
      * @return \Illuminate\Http\Response
      */
-    public function edit(Personnels $personnels)
+    public function edit(Voitures $voitures)
     {
         //
     }
@@ -79,10 +80,10 @@ class PersonnelsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Personnels  $personnels
+     * @param  \App\Models\Voitures  $voitures
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Personnels $personnels)
+    public function update(Request $request, Voitures $voitures)
     {
         //
     }
@@ -90,10 +91,10 @@ class PersonnelsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Personnels  $personnels
+     * @param  \App\Models\Voitures  $voitures
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Personnels $personnels)
+    public function destroy(Voitures $voitures)
     {
         //
     }

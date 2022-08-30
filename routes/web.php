@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\FormationsController;
+use App\Http\Controllers\PersonnelsController;
+use App\Http\Controllers\VoituresController;
+use App\Http\Controllers\ExamensController;
+use App\Http\Controllers\ResultatsController;
+use App\Http\Controllers\ProgrammesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +23,26 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// route pour formation
+Route::resource('/Formations', FormationsController::class);
+// Route::get('Formations', [App\Http\Controllers\FormationsController::class, 'index']);
+
+// route pour personnels
+Route::resource('/Personnels', PersonnelsController::class);
+
+// route pour voitures
+Route::resource('/Voitures', VoituresController::class);
+
+// route pour examens
+Route::resource('/Examens', ExamensController::class);
+
+// route pour resultats
+Route::resource('/Resultats', ResultatsController::class);
+
+// route pour programme
+Route::resource('/Programmes', ProgrammesController::class);
+
 
 Auth::routes();
 

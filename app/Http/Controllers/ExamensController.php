@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Personnels;
+use App\Models\Examens;
 use Illuminate\Http\Request;
 
-class PersonnelsController extends Controller
+class ExamensController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,8 @@ class PersonnelsController extends Controller
     public function index()
     {
         //
-        $admin = Personnels::count();
-        $personnel = Personnels::all();
-        return view ('personnels.index', compact('personnel', 'admin'));
+        $exam = Examens::all();
+        return view ('examens.index', compact('exam'));
     }
 
     /**
@@ -25,10 +24,9 @@ class PersonnelsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         //
-       
     }
 
     /**
@@ -39,27 +37,27 @@ class PersonnelsController extends Controller
      */
     public function store(Request $request)
     {
-        $persona = $request->validate(
+        //
+        $ex = $request->validate(
             [
-                'nom' => ['required', 'string'],
-                'prenom' => ['required', 'string'],
-                'fonction' => ['required', 'string'],
-                'telephone' => ['required', 'integer']
+                'datedebut' => ['required', 'date'],
+                'datefin' => ['required', 'date'],
+                'lieu' => ['required', 'string'],
+                'heure' => ['required', 'string'],
+                'type' => ['required', 'string']
             ]
         );
-        
-        $personnel = Personnels::create($persona);
-        return redirect('/Personnels');
-
+        $exam = Examens::create($ex);
+        return redirect('/Examens');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Personnels  $personnels
+     * @param  \App\Models\Examens  $examens
      * @return \Illuminate\Http\Response
      */
-    public function show(Personnels $personnels)
+    public function show(Examens $examens)
     {
         //
     }
@@ -67,10 +65,10 @@ class PersonnelsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Personnels  $personnels
+     * @param  \App\Models\Examens  $examens
      * @return \Illuminate\Http\Response
      */
-    public function edit(Personnels $personnels)
+    public function edit(Examens $examens)
     {
         //
     }
@@ -79,10 +77,10 @@ class PersonnelsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Personnels  $personnels
+     * @param  \App\Models\Examens  $examens
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Personnels $personnels)
+    public function update(Request $request, Examens $examens)
     {
         //
     }
@@ -90,10 +88,10 @@ class PersonnelsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Personnels  $personnels
+     * @param  \App\Models\Examens  $examens
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Personnels $personnels)
+    public function destroy(Examens $examens)
     {
         //
     }
